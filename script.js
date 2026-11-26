@@ -1,13 +1,28 @@
 
-// Array que armazena os torcedores
-let torcedores = [];
 
-// Capturando os elementos HTML
 const formulario = document.getElementById("formTorcedor");
 const lista = document.getElementById("listaTorcedores");
 const mensagem = document.getElementById("mensagem");
+const contador = document.getElementById("contador");
 
-// Evento de cadastro
+
+let torcedores = [];
+
+
+function validarEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+
+function exibirMensagem(texto, tipo) {
+    mensagem.textContent = texto;
+
+    mensagem.style.color =
+        tipo === "sucesso" ? "#55cf83" : "#ff5555";
+}
+
+
 formulario.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -15,56 +30,70 @@ formulario.addEventListener("submit", function(event) {
     const nome = document.getElementById("nome").value.trim();
     const email = document.getElementById("email").value.trim();
 
-    // Validação dos campos
-    if (nome.length < 3 || !emailValido(email)) {
-        mensagem.textContent = "Preencha os campos corretamente!";
-        mensagem.style.color = "red";
+   
+    if (nome.length < 3) {
+        exibirMensagem("Digite um nome com pelo menos 3 caracteres.", "erro");
         return;
     }
 
-    // Criando objeto do torcedor
-    const torcedor = {
+  
+    if (!validarEmail(email)) {
+        exibirMensagem("Digite um e-mail válido.", "erro");
+        return;
+    }
+
+    
+    const duplicado = torcedores.some(function(torcedor) {
+        return torcedor.email.toLowerCase() === email.toLowerCase();
+    });
+
+    if (duplicado) {
+        exibirMensagem("Este e-mail já está cadastrado.", "erro");
+        return;
+    }
+
+   
+    const novoTorcedor = {
         id: Date.now(),
         nome: nome,
         email: email
     };
 
-    // Adicionando ao array
-    torcedores.push(torcedor);
+    
+    torcedores.push(novoTorcedor);
 
-    // Atualizando a tela
+ 
     mostrarTorcedores();
 
-    mensagem.textContent = "Torcedor cadastrado com sucesso! 🖤";
-    mensagem.style.color = "green";
+   
+    exibirMensagem("Cadastro realizado com sucesso!", "sucesso");
 
+   
     formulario.reset();
 });
 
-// Função para validar o e-mail
-function emailValido(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
 
-// Função para mostrar os torcedores
 function mostrarTorcedores() {
 
     lista.innerHTML = "";
 
+    contador.textContent =
+        `${torcedores.length} TORCEDOR(ES)`;
+
     if (torcedores.length === 0) {
-        lista.innerHTML = `
-            <p class="text-white text-center">
-                Nenhum torcedor cadastrado ainda.
-            </p>
-        `;
+
+        const vazio = document.createElement("p");
+        vazio.className = "empty";
+        vazio.textContent = "Ainda não há torcedores cadastrados.";
+
+        lista.appendChild(vazio);
         return;
     }
 
     torcedores.forEach(function(torcedor) {
 
         const item = document.createElement("div");
-
-        item.className = "torcedor";
+        item.className = "torcedor-item";
 
         const informacoes = document.createElement("div");
 
@@ -73,15 +102,13 @@ function mostrarTorcedores() {
 
         const email = document.createElement("p");
         email.textContent = torcedor.email;
-        email.className = "mb-0";
 
         informacoes.appendChild(nome);
         informacoes.appendChild(email);
 
         const botao = document.createElement("button");
-
-        botao.textContent = "Remover";
-        botao.className = "btn btn-danger btn-sm";
+        botao.className = "remove-btn";
+        botao.textContent = "REMOVER";
 
         botao.addEventListener("click", function() {
             removerTorcedor(torcedor.id);
@@ -94,7 +121,7 @@ function mostrarTorcedores() {
     });
 }
 
-// Função para remover torcedor
+
 function removerTorcedor(id) {
 
     torcedores = torcedores.filter(function(torcedor) {
@@ -103,9 +130,8 @@ function removerTorcedor(id) {
 
     mostrarTorcedores();
 
-    mensagem.textContent = "Torcedor removido!";
-    mensagem.style.color = "orange";
+    exibirMensagem("Torcedor removido com sucesso!", "sucesso");
 }
 
-// Mensagem inicial
+
 mostrarTorcedores();

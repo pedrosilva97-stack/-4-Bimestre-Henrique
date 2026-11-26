@@ -1,4 +1,13 @@
 
+
+:root {
+    --black: #080808;
+    --dark: #111111;
+    --white: #f5f5f5;
+    --gray: #999999;
+    --red: #d71920;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,180 +16,673 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    color: #222;
+    background: var(--black);
+    color: var(--white);
+    font-family: "Inter", sans-serif;
 }
 
+::selection {
+    background: var(--red);
+    color: white;
+}
+
+/* MENU */
+
 .navbar {
-    background: #080808;
-    padding: 18px;
+    background: rgba(5, 5, 5, .96);
+    border-bottom: 1px solid #292929;
+    padding: 20px 0;
 }
 
 .navbar-brand {
-    letter-spacing: 2px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 29px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.navbar-brand span,
+.footer-top h2 span {
+    color: var(--red);
 }
 
 .nav-link {
-    color: white !important;
-    transition: 0.3s;
+    color: #ccc !important;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 20px;
+    letter-spacing: 1px;
+    transition: .3s;
 }
 
 .nav-link:hover {
-    color: #e50914 !important;
+    color: var(--red) !important;
 }
 
+/* CAPA */
+
 .hero {
-    min-height: 450px;
+    min-height: 750px;
+    height: 100vh;
+    max-height: 950px;
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
-    background: linear-gradient(135deg, #050505, #333, #850000);
-    padding: 80px 20px;
+
+    background:
+        linear-gradient(90deg, #050505 5%, rgba(0,0,0,.85) 42%, rgba(0,0,0,.2)),
+        linear-gradient(0deg, #080808, transparent 40%),
+        url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,.45), transparent);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 70px;
+}
+
+.eyebrow,
+.section-heading > span,
+.faith-content > span {
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
 }
 
 .hero h1 {
-    font-size: clamp(30px, 5vw, 55px);
-    font-weight: bold;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(75px, 12vw, 145px);
+    line-height: .83;
+    font-weight: 900;
+    letter-spacing: -3px;
+    margin: 30px 0;
 }
 
-.hero h2 {
-    color: #e50914;
-    font-weight: bold;
-    margin: 20px 0;
+.hero h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1.5px white;
 }
 
-.hero p {
-    font-size: 19px;
-    margin-bottom: 30px;
+.hero-description {
+    max-width: 420px;
+    color: #ccc;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 35px;
 }
 
-.section-title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-}
-
-.section-title::after {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: #d40000;
-    margin: 12px auto;
-}
-
-.history-box {
-    background: #111;
+.btn-main {
+    display: inline-block;
+    padding: 17px 25px;
+    border: 0;
+    background: var(--red);
     color: white;
-    padding: 60px 20px;
-    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: .3s;
 }
 
-.history-box h3 {
-    font-size: 70px;
-    color: #e50914;
-    font-weight: bold;
-}
-
-.history-box span {
-    font-size: 50px;
-}
-
-.titles {
-    background: #111;
-}
-
-.trophy-card {
-    border: none;
-    border-radius: 15px;
-    transition: 0.3s;
-}
-
-.trophy-card:hover {
-    transform: translateY(-8px);
-}
-
-.trophy-card h1 {
-    font-size: 50px;
-}
-
-.trophy-card h4 {
-    font-weight: bold;
-}
-
-.idol-card {
+.btn-main:hover {
     background: white;
+    color: black;
+    transform: translateY(-3px);
+}
+
+.hero-bottom {
+    position: absolute;
+    bottom: -150px;
+    width: calc(100% - 24px);
+    display: flex;
+    justify-content: space-between;
+    color: #aaa;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* SEÇÕES */
+
+.section {
+    padding: 115px 0;
+}
+
+.section-heading {
+    margin-bottom: 65px;
+}
+
+.section-heading h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(55px, 8vw, 90px);
+    font-weight: 900;
+    line-height: .9;
+    margin: 20px 0;
+    letter-spacing: -1px;
+}
+
+.section-heading p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.history {
+    background: #f1f1f1;
+    color: #111;
+}
+
+.history .section-heading > span {
+    color: var(--red);
+}
+
+.history-intro {
+    font-size: 25px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.history .row p:not(.history-intro) {
+    color: #555;
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+/* IMAGEM DA HISTÓRIA */
+
+.history-image {
+    min-height: 420px;
+    background:
+        linear-gradient(0deg, rgba(0,0,0,.9), transparent 75%),
+        url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+    display: flex;
+    align-items: end;
+    padding: 35px;
+}
+
+.image-caption span {
+    color: #ff3b43;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.image-caption h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 55px;
+    font-weight: 900;
+    line-height: .9;
+    color: white;
+}
+
+/* LINHA DO TEMPO */
+
+.timeline {
+    border-top: 1px solid #ccc;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.timeline-item {
+    padding: 25px 18px 0 0;
+    border-right: 1px solid #ccc;
+}
+
+.timeline-item:last-child {
+    border-right: none;
+}
+
+.timeline-item span {
+    color: var(--red);
+    font-size: 24px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 900;
+}
+
+.timeline-item h4 {
+    font-size: 15px;
+    font-weight: 800;
+    margin: 12px 0;
+}
+
+.timeline-item p {
+    font-size: 12px !important;
+}
+
+/* TROFÉUS */
+
+.trophies {
+    background: #0b0b0b;
+}
+
+.trophy {
+    position: relative;
+    min-height: 265px;
     padding: 30px;
-    border-radius: 12px;
-    text-align: center;
+    border: 1px solid #292929;
+    background: #111;
+    transition: .3s;
     height: 100%;
-    box-shadow: 0 3px 12px #0002;
-    transition: 0.3s;
 }
 
-.idol-card:hover {
-    transform: scale(1.04);
+.trophy:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+    background: #171717;
 }
 
-.idol-card h3 {
-    font-weight: bold;
-    margin-bottom: 15px;
+.trophy-number {
+    position: absolute;
+    right: 25px;
+    top: 22px;
+    color: #444;
+    font-size: 13px;
+    font-weight: 700;
 }
+
+.trophy-category {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--red);
+    font-weight: 800;
+}
+
+.trophy h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    margin: 30px 0 8px;
+}
+
+.trophy-count {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 65px;
+    line-height: 1;
+    font-weight: 900;
+}
+
+.trophy-count small {
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    color: var(--gray);
+    font-weight: 700;
+}
+
+.trophy p {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 15px;
+    line-height: 1.7;
+}
+
+.paulista-years {
+    border-top: 1px solid #333;
+    padding-top: 30px;
+}
+
+.paulista-years h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.paulista-years p {
+    color: #999;
+    font-size: 13px;
+    line-height: 2.3;
+}
+
+/* ÍDOLOS */
+
+.idols {
+    background: #f0f0f0;
+    color: #111;
+}
+
+.idols .section-heading > span {
+    color: var(--red);
+}
+
+.idol {
+    background: white;
+    height: 100%;
+}
+
+.idol-image {
+    height: 300px;
+    background-color: #222;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+    transition: .4s;
+}
+
+.idol:hover .idol-image {
+    filter: grayscale(0%);
+}
+
+.socrates {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Socrates%20Brasileiro.jpg");
+}
+
+.rivelino {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Roberto%20Rivelino%20-%20Panini%20World%20Cup%201970.jpg");
+}
+
+.marcelinho {
+    background-image: url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=700&q=80");
+}
+
+.cassio {
+    background-image: url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=700&q=80");
+}
+
+.ronaldo {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Ronaldo%20Luiz%20Nazario.jpg");
+}
+
+.guerrero {
+    background-image: url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=700&q=80");
+}
+
+.idol-info {
+    padding: 25px;
+}
+
+.idol-info span {
+    color: var(--red);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.idol-info h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 35px;
+    font-weight: 900;
+    margin: 8px 0;
+}
+
+.idol-info p {
+    color: #666;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* FIEL */
+
+.faith {
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(90deg, rgba(0,0,0,.95), rgba(0,0,0,.4)),
+        url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1800&q=85")
+        center/cover fixed;
+}
+
+.faith-content {
+    max-width: 650px;
+    padding: 80px max(calc((100vw - 1140px) / 2), 30px);
+    padding-right: 30px;
+}
+
+.faith-content h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(75px, 10vw, 120px);
+    font-weight: 900;
+    line-height: .85;
+    margin: 30px 0;
+}
+
+.faith-content p {
+    color: #ccc;
+    max-width: 400px;
+    line-height: 1.8;
+}
+
+.faith-content strong {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--red);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* CADASTRO */
 
 .register {
     background: #111;
 }
 
-.register-form {
-    max-width: 550px;
-    margin: auto;
-    background: white;
+.register form {
     padding: 30px;
-    border-radius: 15px;
+    border: 1px solid #333;
 }
 
-.register-form label {
-    font-weight: bold;
+.register label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
-.torcedor {
-    background: white;
-    color: #111;
+.form-control {
+    background: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 0;
     padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    color: white;
+}
+
+.form-control:focus {
+    background: #1a1a1a;
+    border-color: var(--red);
+    color: white;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: #777;
+}
+
+.register .btn-main {
+    width: 100%;
+}
+
+.feedback {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.list-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
 }
+
+.list-header h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.list-header span {
+    font-size: 9px;
+    color: var(--red);
+    font-weight: 800;
+}
+
+.empty {
+    color: #888;
+    font-size: 13px;
+    padding: 20px 0;
+}
+
+.torcedor-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px 0;
+    border-bottom: 1px solid #333;
+}
+
+.torcedor-item strong {
+    font-size: 13px;
+}
+
+.torcedor-item p {
+    color: #888;
+    font-size: 11px;
+    margin: 5px 0 0;
+    overflow-wrap: anywhere;
+}
+
+.remove-btn {
+    border: 1px solid #555;
+    background: transparent;
+    color: white;
+    padding: 8px 12px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background: var(--red);
+    border-color: var(--red);
+}
+
+/* RODAPÉ */
 
 footer {
     background: #050505;
-    color: white;
-    padding: 25px 10px;
+    padding: 60px 0 25px;
+    border-top: 1px solid #222;
 }
 
-footer p {
-    margin: 5px;
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 40px;
 }
 
-@media (max-width: 576px) {
+.footer-top h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 55px;
+    font-weight: 900;
+}
+
+.footer-top p,
+.footer-bottom {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #888;
+    font-weight: 700;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    border-top: 1px solid #292929;
+    padding-top: 25px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
     .hero {
-        min-height: 380px;
+        min-height: 680px;
+        height: 90vh;
     }
 
-    .register-form {
-        padding: 20px;
+    .hero h1 {
+        font-size: 85px;
     }
 
-    .torcedor {
+    .hero-bottom {
+        bottom: -110px;
+        font-size: 8px;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .timeline {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 25px;
+    }
+
+    .timeline-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .faith {
+        background-attachment: scroll;
+    }
+
+    .footer-top,
+    .footer-bottom {
         flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .idol-image {
+        height: 350px;
     }
 }
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 68px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .section-heading h2 {
+        font-size: 65px;
+    }
+
+    .timeline {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 15px;
+    }
+
+    .history-image {
+        min-height: 320px;
+    }
+
+    .list-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+

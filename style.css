@@ -1,0 +1,186 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+.navbar {
+    background: #080808;
+    padding: 18px;
+}
+
+.navbar-brand {
+    letter-spacing: 2px;
+}
+
+.nav-link {
+    color: white !important;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #e50914 !important;
+}
+
+.hero {
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: linear-gradient(135deg, #050505, #333, #850000);
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 55px);
+    font-weight: bold;
+}
+
+.hero h2 {
+    color: #e50914;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.hero p {
+    font-size: 19px;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #d40000;
+    margin: 12px auto;
+}
+
+.history-box {
+    background: #111;
+    color: white;
+    padding: 60px 20px;
+    border-radius: 15px;
+}
+
+.history-box h3 {
+    font-size: 70px;
+    color: #e50914;
+    font-weight: bold;
+}
+
+.history-box span {
+    font-size: 50px;
+}
+
+.titles {
+    background: #111;
+}
+
+.trophy-card {
+    border: none;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.trophy-card:hover {
+    transform: translateY(-8px);
+}
+
+.trophy-card h1 {
+    font-size: 50px;
+}
+
+.trophy-card h4 {
+    font-weight: bold;
+}
+
+.idol-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    height: 100%;
+    box-shadow: 0 3px 12px #0002;
+    transition: 0.3s;
+}
+
+.idol-card:hover {
+    transform: scale(1.04);
+}
+
+.idol-card h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.register {
+    background: #111;
+}
+
+.register-form {
+    max-width: 550px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.register-form label {
+    font-weight: bold;
+}
+
+.torcedor {
+    background: white;
+    color: #111;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+footer {
+    background: #050505;
+    color: white;
+    padding: 25px 10px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+@media (max-width: 576px) {
+    .hero {
+        min-height: 380px;
+    }
+
+    .register-form {
+        padding: 20px;
+    }
+
+    .torcedor {
+        flex-direction: column;
+    }
+}
